@@ -108,8 +108,46 @@ After the Streamlit app completes evaluation, you will see visual outputs and pe
 ## Model Training and Evaluation
 
 This project involves training and evaluating object detection models on the provided dataset.  
-We experimented with **YOLO** and **Faster R-CNN** architectures to identify and localize objects within the dataset.
+We experimented with **YOLO** and **Faster R-CNN** architectures to identify and localize objects within the dataset. 
+### Dataset Configuration
+---
+For a quick sanity check, a small **`test/`** folder containing **20 random images** is included.  
+This allows you to verify that the container, data loader, and model pipeline are functioning correctly before running full-scale training.
 
+The dataset split can be easily controlled through the entries in the **`cfg`** configuration file:
+
+```yaml
+# Example configuration (inside cfg/dataset.yaml)
+train: dataset/train/images
+val: dataset/val/images
+
+# For quick sanity check:
+# train: dataset/test/images
+# val: dataset/test/images
+```
+#### Folder Structure
+```
+dataset/
+│
+├── train/
+│   ├── images/
+│   └── labels/
+│
+├── val/
+│   ├── images/
+│   └── labels/
+│
+└── test/
+    ├── images/   # 20 random images for quick sanity check
+    └── labels/   # Optional if available
+```
+The ```test/ folder``` is provided only for sanity testing and debugging.
+
+Use the ```train/``` and ```val/``` folders for the actual full dataset training and evaluation.
+
+Modify the train and val entries in your YAML file under ```cfg/``` to switch between test and full datasets.
+
+No code changes are required — only the dataset path in the config needs to be updated.
 ---
 
 ### YOLO Model — Training and Evaluation
