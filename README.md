@@ -75,8 +75,12 @@ sudo docker build -t bosch-assign-bdd .
 ### Then to run
 docker run -it bosch_assign_bdd:latest
 ```
+
+
 ---
 # Evaluation Instruction
+**All evaluation report are given in [Project Report](report.pdf)**
+
 ---
 ## Dataset Evaluation
 
@@ -99,7 +103,7 @@ Please be patient while the results are being generated.
 
 ### Evaluation Results
 ---
-After the Streamlit app completes evaluation, you will see visual outputs and performance metrics.
+After the Streamlit app completes evaluation, you will see visual outputs and performance metrics. Detailed evlaution is given in [Project Report](report.pdf).
 
 ## Model Training and Evaluation
 
@@ -141,7 +145,7 @@ python eval_yolo.py
 ---
 The YOLO evaluation code uses the default YOLO dataloader.
 For custom dataloaders and extended dataset handling, refer to the Faster R-CNN section below.
-Detailed descriptions of the evaluation approach are available in the report PDF.
+Detailed descriptions of the evaluation approach are available in the [Project Report](report.pdf).
 
 
 ### Faster R-CNN Model — Training and Evaluation
@@ -186,4 +190,4 @@ python eval_frcnn.py
 ---
 A detailed comparison of both YOLO and Faster R-CNN models,
 including CLIP integration, performance graphs, and dataset insights,
-is available in the full project report:
+is available in the full [Project Report](report.pdf)
