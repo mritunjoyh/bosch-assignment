@@ -39,7 +39,7 @@ gdown https://drive.google.com/file/d/1IO9fVXa85c3O69aFH-v1xv6pUMfZ8Rfw/view?usp
 ### Clone the Repository
 ---
 ```bash
-git clone <your_repo_link>.git
+git clone https://github.com/mritunjoyh/bosch-assignment.git
 cd bosch-assignment
 ```
 
