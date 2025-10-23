@@ -8,7 +8,7 @@ Follow the instructions below to either **use the pre-built Docker image** or **
 
 ## Option 1 — Use Pre-Built Docker Image (Recommended)
 
-You can directly download the pre-built Docker image (`.tar.gz`, ~10 GB) from Google Drive and load it into Docker.
+the pre-built Docker image (`.tar.gz`, ~10 GB) can directly be downloaded from Google Drive and load it into Docker.
 
 ```bash
 # Download pre-built Docker image (~10GB)
@@ -21,12 +21,12 @@ sudo docker load < bosch-assign-bdd.tar.gz
 # Verify that the image was loaded
 sudo docker images
 ```
-Once loaded, you can run the container directly:
+Once loaded, the container directly can be run :
 ```bash
 sudo docker run -it --name temp bosch-assign-bdd bash
 ```
 Note:
-The image is large (~10 GB). Ensure you have enough disk space and a stable network connect.
+The image is large (~10 GB). Ensure enough disk space and a stable network connection.
 
 ---
 ## Option 2 — Build Docker With Pre Processed Dataset.
@@ -54,7 +54,7 @@ Create a dataset folder inside the project directory and download the dataset fr
 
 ### Directory Structure
 ---
-Ensure your project has the following structure before building:
+Ensure the project has the following structure before building:
 
 ```
 boschassignment/
@@ -79,8 +79,8 @@ docker run -it bosch_assign_bdd:latest
 # Evaluation Instruction
 ---
 ## Dataset Evaluation
----
-Once the Docker container is running, you can evaluate the dataset using the provided Streamlit interface.
+
+Once the Docker container is running, dataset can be evaluated using the provided Streamlit interface.
 
 ---
 
@@ -101,3 +101,89 @@ Please be patient while the results are being generated.
 ---
 After the Streamlit app completes evaluation, you will see visual outputs and performance metrics.
 
+## Model Training and Evaluation
+
+This project involves training and evaluating object detection models on the provided dataset.  
+We experimented with **YOLO** and **Faster R-CNN** architectures to identify and localize objects within the dataset.
+
+---
+
+### YOLO Model — Training and Evaluation
+
+#### Training YOLO
+---
+To train the YOLO model, navigate to the YOLO directory and run the training script:
+
+```bash
+cd models/YOLO
+python train.py
+```
+This will start the YOLO training process using the dataset prepared earlier.
+Training results, weights, and logs will be saved automatically in the respective output directories.
+
+#### YOLO Evaluation
+---
+After training, the model is evaluated in two different ways:
+
+Using CLIP and YOLO Combined
+Evaluate using CLIP-assisted scoring (semantic + detection):
+```python
+python eval_clip.py
+```
+
+Using Classic YOLO Evaluation
+Evaluate using the standard YOLO metric pipeline:
+```python
+python eval_yolo.py
+```
+
+#### Note
+---
+The YOLO evaluation code uses the default YOLO dataloader.
+For custom dataloaders and extended dataset handling, refer to the Faster R-CNN section below.
+Detailed descriptions of the evaluation approach are available in the report PDF.
+
+
+### Faster R-CNN Model — Training and Evaluation
+---
+#### Overview
+---
+The Faster R-CNN model is trained and evaluated using both pretrained and custom lightweight backbones.
+
+We utilized a pretrained model available on Hugging Face:
+[Pretrained Faster R-CNN (BDD Fine-tuned)](https://huggingface.co/HugoHE/faster-rcnn-bdd-finetune).
+
+Detailed metrics and comparison results can be found in the evaluation report.
+
+#### Training the Custom Faster R-CNN
+---
+Navigate to the Faster R-CNN directory to train your model:
+```bash
+cd models/FasterRCNN
+python train.py
+```
+
+**Due to GPU and time constraints, a lightweight MobileNet backbone was used instead of ResNet.**
+**The full-scale model was not trained completely for this submission.**
+
+**All dataloader and dataset configurations for Faster R-CNN can be found in: models/FasterRCNN/**
+
+### Evaluating Faster R-CNN
+---
+
+Two evaluation scripts are available:
+```bash
+## Evaluation using Pretrained Weights
+
+python eval_frcnn_zoo_trained.py
+
+
+## Evaluation using Custom-Trained Model
+
+python eval_frcnn.py
+```
+#### Reports and Results
+---
+A detailed comparison of both YOLO and Faster R-CNN models,
+including CLIP integration, performance graphs, and dataset insights,
+is available in the full project report:
