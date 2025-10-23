@@ -1,0 +1,16 @@
+# bdd_custom.yaml
+path: /mnt/ssd1/detect/bdd100k
+train: train/images
+val: val/images
+
+names:
+  0: person
+  1: car
+  2: bus
+  3: truck
+  4: traffic light
+  5: traffic sign
+  6: rider
+  7: bike
+  8: motor
+  9: train
